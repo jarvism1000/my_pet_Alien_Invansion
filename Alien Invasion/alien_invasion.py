@@ -74,6 +74,9 @@ class AlienInvasion:
             self.settings.initialize_dynamic_settings()
             self.stats.reset_stats()
             self.stats.game_active = True
+            self.sb.prep_score()
+            self.sb.prep_level()
+            self.sb.prep_ships()
 
             # Позбавитися надлишку прибульців та куль.
             self.aliens.empty()
@@ -143,6 +146,21 @@ class AlienInvasion:
         collisions = pygame.sprite.groupcollide(
             self.bullets, self.aliens, True, True)
 
+        if collisions:
+            for aliens in collisions.values():
+                self.stats.score += self.settings.alien_points * len(aliens)
+            self.sb.prep_score()
+            self.sb.check_high_score()
+
+        if not self.aliens:
+            # Знищити наявні кулі та створити новий флот.
+            self.bullets.empty()
+            self._create_fleet()
+
+            # Збільшити рівень.
+            self.stats.level += 1
+            self.sb.prep_level()
+
     def _check_aliens_bottom(self):
         """Перевірити, чи не досяг якийсь прибулець нижнього краю екрана."""
         screen_rect = self.screen.get_rect()
@@ -151,11 +169,6 @@ class AlienInvasion:
                 # Зреагувати так, ніби корабель було підбито.
                 self._ship_hit()
                 break
-
-        if not self.aliens:
-            # Знищити наявні кулі та створити новий флот.
-            self.bullets.empty()
-            self._create_fleet()
 
     def _update_aliens(self):
         """
@@ -204,8 +217,9 @@ class AlienInvasion:
     def _ship_hit(self):
         """Реагувати на зіткнення прибульця з кораблем"""
         if self.stats.ships_left > 0:
-            # Зменшити ship_left
+            # Зменшити ship_left та оновити табло
             self.stats.ships_left -= 1
+            self.sb.prep_ships()
 
             # Позбавитися надлишку прибульців та куль.
             self.aliens.empty()
