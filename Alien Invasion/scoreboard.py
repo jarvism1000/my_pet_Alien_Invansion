@@ -25,7 +25,7 @@ class Scoreboard:
         self.prep_ships()
 
     def prep_score(self):
-        """Перетворити рахунок на зображення"""
+        """Перетворити рахунок на зображення."""
         rounded_score = round(self.stats.score, -1)
         score_str = "Score {:,}".format(rounded_score)
         self.score_image = self.font.render(score_str, True,
@@ -50,7 +50,7 @@ class Scoreboard:
         self.high_score_image = self.font.render(high_score_str, True,
                 self.text_colour, self.settings.bg_colour)
 
-        # Відцентрувати рекорд по горизонталі
+        # Відцентрувати рекорд по горизонталі.
         self.high_score_rect = self.high_score_image.get_rect()
         self.high_score_rect.centerx = self.screen_rect.centerx
         self.high_score_rect.top = self.score_rect.top

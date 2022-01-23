@@ -2,10 +2,10 @@ import pygame
 from pygame.sprite import Sprite
 
 class Bullet(Sprite):
-    """Клас для керування кулями, випущеними з корабля"""
+    """Клас для керування кулями, випущеними з корабля."""
 
     def __init__(self, ai_game):
-        """Створити об'єкт bullet у поточній позиції корабля"""
+        """Створити об'єкт bullet у поточній позиції корабля."""
         super().__init__()
         self.screen = ai_game.screen
         self.settings = ai_game.settings

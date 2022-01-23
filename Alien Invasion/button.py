@@ -1,6 +1,7 @@
 import pygame.font
 
 class Button:
+    """Клас для кнопки Play."""
 
     def __init__(self, ai_game, msg):
         """Ініціалізація атрибутів кнопки."""

@@ -1,33 +1,30 @@
-
-
-
 class Settings:
     """Клас для збереження всіх налаштувань гри."""
 
     def __init__(self):
-        """Ініціалізувати постійні налаштування гри"""
-        # Налаштування дисплею
+        """Ініціалізувати постійні налаштування гри."""
+        # Налаштування дисплею.
         self.screen_width = 1200
         self.screen_height = 800
         self.bg_colour = (230, 230, 230)
 
-        # Налаштування корабля
+        # Налаштування корабля.
         self.ship_limit = 3
 
-        # Налаштування кулі
+        # Налаштування кулі.
         self.bullet_width = 3
         self.bullet_height = 15
         self.bullet_colour = (60, 60, 60)
         self.bullets_allowed = 3
 
-        # Налаштування прибульця
+        # Налаштування прибульця.
         self.fleet_drop_speed = 10
 
         # Як швидко гра має прискорюватися.
         self.speedup_scale = 1.1
         self.initialize_dynamic_settings()
 
-        # Як швидко збільшується вартість прибульців
+        # Як швидко збільшується вартість прибульців.
         self.score_scale = 1.5
 
     def initialize_dynamic_settings(self):
@@ -39,7 +36,7 @@ class Settings:
         # fleet_direction 1 означає рух праворуч; -1 -- ліворуч.
         self.fleet_direction = 1
 
-        # Отримання балів
+        # Отримання балів.
         self.alien_points = 50
 
     def increase_speed(self):
@@ -47,6 +44,5 @@ class Settings:
         self.ship_speed *= self.speedup_scale
         self.bullet_speed *= self.speedup_scale
         self.alien_speed *= self.speedup_scale
-
         self.alien_points = int(self.alien_points * self.score_scale)
 
